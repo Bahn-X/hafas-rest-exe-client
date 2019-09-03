@@ -2,8 +2,9 @@
 	"name": "hafas-client",
 	"description": "Client for HAFAS public transport APIs.",
 	"version": "4.6.0",
-	"main": "index.js",
+	"main": "rest-exe.js",
 	"files": [
+		"rest-exe.js",
 		"index.js",
 		"throttle.js",
 		"retry.js",
@@ -30,7 +31,7 @@
 		"http"
 	],
 	"engines": {
-		"node": ">=8.3.0"
+		"node": ">=10"
 	},
 	"dependencies": {
 		"@derhuerst/br2nl": "^1.0.0",
