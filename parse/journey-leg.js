@@ -95,9 +95,9 @@ const createParseJourneyLeg = (profile, opt, data) => {
 			if (depPl.prognosedPlatform) res.prognosedDeparturePlatform = depPl.prognosedPlatform
 
 			if (opt.stopovers && pt.jny.stopL) {
-				const parse = profile.parseStopover(profile, opt, data, j.date)
+				const parse = profile.parseStopover(profile, opt, data)
 				const stopL = pt.jny.stopL
-				res.stopovers = stopL.map(parse)
+				res.stopovers = stopL.map(st => parse(j.date, st))
 
 				if (opt.remarks && Array.isArray(pt.jny.msgL)) {
 					// todo: apply leg-wide remarks if `opt.stopovers` is false

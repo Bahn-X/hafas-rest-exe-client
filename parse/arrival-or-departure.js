@@ -41,9 +41,11 @@ const createParseArrOrDep = (profile, opt, data, prefix) => {
 		}
 
    		if (opt.stopovers && d.stopL) {
-  			const parse = profile.parseStopover(profile, opt, data, d.date)
+  			const parse = profile.parseStopover(profile, opt, data)
   			// Filter stations the train passes without stopping, as this doesn't comply with FPTF (yet).
-  			const stopovers = d.stopL.map(parse).filter(st => !st.passBy)
+  			const stopovers = d.stopL
+  			.map(st => parse(d.date, st))
+  			.filter(st => !st.passBy)
   			if (prefix === ARRIVAL) res.previousStopovers = stopovers
 			else if (prefix === DEPARTURE) res.nextStopovers = stopovers
   		}

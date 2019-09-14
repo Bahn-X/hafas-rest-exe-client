@@ -8,7 +8,7 @@ const createParseMovement = (profile, opt, data) => {
 	// todo: what is m.ani.dirGeo[n]? maybe the speed?
 	// todo: what is m.ani.proc[n]? wut?
 	const parseMovement = (m) => {
-		const pStopover = profile.parseStopover(profile, opt, data, m.date)
+		const pStopover = profile.parseStopover(profile, opt, data)
 
 		const res = {
 			direction: m.dirTxt ? profile.parseStationName(m.dirTxt) : null,
@@ -20,7 +20,7 @@ const createParseMovement = (profile, opt, data) => {
 				longitude: m.pos.x / 1000000
 			} : null,
 			// todo: stopL[0] is the first of the trip! -> filter out
-			nextStopovers: m.stopL.map(pStopover),
+			nextStopovers: m.stopL.map(st => pStopover(m.date, st)),
 			frames: []
 		}
 
