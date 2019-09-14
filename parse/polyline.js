@@ -8,6 +8,7 @@ const createParsePolyline = (profile, opt, _) => {
 	// todo: what is p.type?
 	// todo: what is p.crdEncS?
 	// todo: what is p.crdEncF?
+	// todo: what is p.dim?
 	const parsePolyline = (p) => {
 		const shape = toGeoJSON(p.crdEncYX)
 		if (shape.coordinates.length === 0) return null

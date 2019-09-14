@@ -64,7 +64,7 @@ const createParseJourneyLeg = (profile, opt, data) => {
 			res.reachable = !!pt.jny.isRchbl
 		}
 
-		if (pt.jny && pt.jny.polyline) {
+		if (opt.polylines && pt.jny && pt.jny.polyline) {
 			res.polyline = pt.jny.polyline || null
 		}
 
