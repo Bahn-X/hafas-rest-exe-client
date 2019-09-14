@@ -1,15 +1,13 @@
 'use strict'
 
-const parseWhen = require('./when')
-const parsePlatform = require('./platform')
 const findRemarks = require('./find-remarks')
 
 const createParseStopover = (profile, opt, data, date) => {
 	const parseStopover = (st) => {
-		const arr = parseWhen(profile, date, st.aTimeS, st.aTimeR, st.aTZOffset, st.aCncl)
-		const arrPl = parsePlatform(profile, st.aPlatfS, st.aPlatfR, st.aCncl)
-		const dep = parseWhen(profile, date, st.dTimeS, st.dTimeR, st.dTZOffset, st.dCncl)
-		const depPl = parsePlatform(profile, st.dPlatfS, st.dPlatfR, st.dCncl)
+		const arr = profile.parseWhen(profile, date, st.aTimeS, st.aTimeR, st.aTZOffset, st.aCncl)
+		const arrPl = profile.parsePlatform(profile, st.aPlatfS, st.aPlatfR, st.aCncl)
+		const dep = profile.parseWhen(profile, date, st.dTimeS, st.dTimeR, st.dTZOffset, st.dCncl)
+		const depPl = profile.parsePlatform(profile, st.dPlatfS, st.dPlatfR, st.dCncl)
 
 		const res = {
 			stop: st.location || null,

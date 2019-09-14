@@ -1,7 +1,5 @@
 'use strict'
 
-const parseWhen = require('./when')
-const parsePlatform = require('./platform')
 const findRemarks = require('./find-remarks')
 
 const clone = obj => Object.assign({}, obj)
@@ -50,13 +48,13 @@ const createParseJourneyLeg = (profile, opt, data) => {
 			destination: clone(pt.arr.location)
 		}
 
-		const arr = parseWhen(profile, j.date, pt.arr.aTimeS, pt.arr.aTimeR, pt.arr.aTZOffset, pt.arr.aCncl)
+		const arr = profile.parseWhen(profile, j.date, pt.arr.aTimeS, pt.arr.aTimeR, pt.arr.aTZOffset, pt.arr.aCncl)
 		res.arrival = arr.when
 		res.plannedArrival = arr.plannedWhen
 		res.arrivalDelay = arr.delay
 		if (arr.prognosedWhen) res.prognosedArrival = arr.prognosedWhen
 
-		const dep = parseWhen(profile, j.date, pt.dep.dTimeS, pt.dep.dTimeR, pt.dep.dTZOffset, pt.dep.dCncl)
+		const dep = profile.parseWhen(profile, j.date, pt.dep.dTimeS, pt.dep.dTimeR, pt.dep.dTZOffset, pt.dep.dCncl)
 		res.departure = dep.when
 		res.plannedDeparture = dep.plannedWhen
 		res.departureDelay = dep.delay
@@ -86,12 +84,12 @@ const createParseJourneyLeg = (profile, opt, data) => {
 			res.line = pt.jny.line || null
 			res.direction = pt.jny.dirTxt && profile.parseStationName(pt.jny.dirTxt) || null
 
-			const arrPl = parsePlatform(profile, pt.arr.aPlatfS, pt.arr.aPlatfR, pt.arr.aCncl)
+			const arrPl = profile.parsePlatform(profile, pt.arr.aPlatfS, pt.arr.aPlatfR, pt.arr.aCncl)
 			res.arrivalPlatform = arrPl.platform
 			res.plannedArrivalPlatform = arrPl.plannedPlatform
 			if (arrPl.prognosedPlatform) res.prognosedArrivalPlatform = arrPl.prognosedPlatform
 
-			const depPl = parsePlatform(profile, pt.dep.dPlatfS, pt.dep.dPlatfR, pt.dep.dCncl)
+			const depPl = profile.parsePlatform(profile, pt.dep.dPlatfS, pt.dep.dPlatfR, pt.dep.dCncl)
 			res.departurePlatform = depPl.platform
 			res.plannedDeparturePlatform = depPl.plannedPlatform
 			if (depPl.prognosedPlatform) res.prognosedDeparturePlatform = depPl.prognosedPlatform
@@ -130,7 +128,7 @@ const createParseJourneyLeg = (profile, opt, data) => {
 						tripId: a.jid,
 						line: a.line || null,
 						direction: a.dirTxt || null,
-						...parseWhen(profile, j.date, st0.dTimeS, st0.dTimeR, st0.dTZOffset, st0.dCncl)
+						...profile.parseWhen(profile, j.date, st0.dTimeS, st0.dTimeR, st0.dTZOffset, st0.dCncl)
 					}
 				}
 				res.alternatives = freq.jnyL.map(parseAlternative)
