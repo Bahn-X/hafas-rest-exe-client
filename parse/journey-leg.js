@@ -42,7 +42,7 @@ const createParseJourneyLeg = (profile, opt, data) => {
 
 	// j = journey, pt = part
 	// todo: pt.planrtTS
-	const parseJourneyLeg = (j, pt, parseStopovers = true) => {
+	const parseJourneyLeg = (j, pt) => {
 		const res = {
 			origin: clone(pt.dep.location) || null,
 			destination: clone(pt.arr.location)
@@ -94,13 +94,13 @@ const createParseJourneyLeg = (profile, opt, data) => {
 			res.plannedDeparturePlatform = depPl.plannedPlatform
 			if (depPl.prognosedPlatform) res.prognosedDeparturePlatform = depPl.prognosedPlatform
 
-			if (parseStopovers && pt.jny.stopL) {
+			if (opt.stopovers && pt.jny.stopL) {
 				const parse = profile.parseStopover(profile, opt, data, j.date)
 				const stopL = pt.jny.stopL
 				res.stopovers = stopL.map(parse)
 
 				if (opt.remarks && Array.isArray(pt.jny.msgL)) {
-					// todo: apply leg-wide remarks if `parseStopovers` is false
+					// todo: apply leg-wide remarks if `opt.stopovers` is false
 					applyRemarks(res, pt.jny.msgL)
 				}
 
