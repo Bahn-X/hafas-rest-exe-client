@@ -64,7 +64,7 @@ const parseWarning = (profile, w, data) => {
 		priority: w.prio,
 		category: w.cat || null // todo: parse to sth meaningful
 	}
-	if ('prod' in w) res.products = profile.parseProducts(w.prod)
+	if ('prod' in w) res.products = profile.parseProductsBitmask(profile)(w.prod)
 
 	if (w.edgeRefL && data.himMsgEdgeL) {
 		res.edges = w.edgeRefL

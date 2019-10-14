@@ -29,7 +29,7 @@ const parseLocation = (profile, opt, _, l) => {
 			location: 'number' === typeof res.latitude ? res : null
 		}
 
-		if ('pCls' in l) stop.products = profile.parseProducts(l.pCls)
+		if ('pCls' in l) stop.products = profile.parseProductsBitmask(profile)(l.pCls)
 		if ('meta' in l) stop.isMeta = !!l.meta
 
 		if (opt.linesOfStops && Array.isArray(l.lines)) {
