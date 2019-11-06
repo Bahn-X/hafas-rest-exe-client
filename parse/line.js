@@ -30,9 +30,10 @@ const createParseLine = (profile, opt, _) => {
 		// todo: what is p.number?
 		// todo: what is p.prodCtx.catCode?
 
-		if ('cls' in p) {
-			// todo: what if `p.cls` is the sum of two bitmasks?
-			const product = byBitmask[parseInt(p.cls)]
+		const pCls = p.cls || (p.prodCtx && p.prodCtx.catCode)
+		if (pCls) {
+			// todo: what if `pCls` is the sum of two bitmasks?
+			const product = byBitmask[parseInt(pCls)]
 			res.mode = product && product.mode || null
 			res.product = product && product.id || null
 		}
