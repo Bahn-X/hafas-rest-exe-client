@@ -1,4 +1,12 @@
-# hafas-client
+# `@bahn-x/hafas-rest-exe-client`
+
+**This is a custom, interim version of [`hafas-client#134`](https://github.com/public-transport/hafas-client/pulls/134) published as `@bahn-x/hafas-rest-exe-client`.** It may be outdated or missing upstream features.
+
+```shell
+npm install @bahn-x/hafas-rest-exe-client
+```
+
+---
 
 **A client for HAFAS public transport APIs**. Sort of like [public-transport-enabler](https://github.com/schildbach/public-transport-enabler), but with a smaller scope. It [contains customisations](p) for the following transport networks:
 

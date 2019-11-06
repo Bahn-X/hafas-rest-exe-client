@@ -1,7 +1,7 @@
 {
-	"name": "hafas-client",
+	"name": "@bahn-x/hafas-rest-exe-client",
 	"description": "Client for HAFAS public transport APIs.",
-	"version": "4.6.0",
+	"version": "5.0.0-alpha.1",
 	"main": "rest-exe.js",
 	"files": [
 		"rest-exe.js",
@@ -19,8 +19,8 @@
 	"contributors": [
 		"Julius Tens <mail@juliustens.eu>"
 	],
-	"homepage": "https://github.com/public-transport/hafas-client/tree/4.6.0",
-	"repository": "public-transport/hafas-client",
+	"homepage": "https://github.com/Bahn-X/hafas-rest-exe-client",
+	"repository": "Bahn-X/hafas-rest-exe-client",
 	"bugs": "https://github.com/public-transport/hafas-client/issues",
 	"license": "ISC",
 	"keywords": [
@@ -68,7 +68,6 @@
 		"vbb-stations-autocomplete": "^3.1.0"
 	},
 	"scripts": {
-		"test": "env NODE_ENV=dev node test/index.js",
-		"prepublishOnly": "npm test | tap-spec"
+		"test": "env NODE_ENV=dev node test/index.js"
 	}
 }
