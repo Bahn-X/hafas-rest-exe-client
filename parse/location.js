@@ -13,7 +13,7 @@ const parseLocation = (profile, opt, _, l) => {
 	const lid = parse(l.lid, {delimiter: '@'})
 	const res = {
 		type: 'location',
-		id: (l.extId || lid.L || '').replace(leadingZeros, '') || null
+		id: (l.extId || lid.L || lid.b || '').replace(leadingZeros, '') || null
 	}
 
 	if (l.crd) {
